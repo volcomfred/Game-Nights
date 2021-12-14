@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Add a Game Night</title>
+</head>
+<body>
+    <h1>Hello {{ user.first_name }} Add a Game Night!</h1>
+    <a class="text-leftt text-light btn btn-primary"  href="/games">Go Back</a>
+    <a class="text-leftt text-light btn btn-primary"  href="/logout">Logout</a>
+    {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/addgame/create" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="game">Game</label>
+            <input type="text" name="game" id="game" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="date">Game Night Date</label>
+            <input type="date" name="date" id="date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="time">Time</label>
+            <input type="time" name="time" id="time" class="form-control">
+        </div>
+
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Welcome {{user.first_name}}!</h1> 
+        <h2>Your Game Night Schedule</h2>
+        <a href="/addgame/new">Add a Game Night!</a>
+        <a class="text-leftt text-light btn btn-primary"  href="/logout">Logout</a>
+        <table class="table p-5 col-10 mx-auto my-10 table-dark text-light table-bordered">
+            <thead>
+                <tr>
+                    <th>Game Night</th>
+                    <th>Location</th>
+                    <th>Game Night Date</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for game in user_games %}
+            {% if user in game.joined.all %}
+                <tr>
+                    <td><a href="/game/{{ game.id }}">{{game.game}}</a></td>
+                    <td>{{ game.location }}</td>
+                    <td>{{ game.date |date:"SHORT_DATE_FORMAT" }}</td>
+                    <td>{{ game.time }}</td>
+                    
+                    <td><a href="/games/{{ game.id }}/cancel">Cancel</a> | 
+                        {% if request.session.user_id == game.creator.id %}
+                        <a href="/games/{{ game.id }}/delete">Delete</a></td>
+                        {% endif %}
+                </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    
+        <h2>Other Game Nights</h2>
+        
+        <table class="table p-5 col-10 mx-auto my-10 table-dark text-light table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Game Night Date</th>
+                    <th>Time</th>
+                    <th>Do You Want To Join?</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for game in all_games %}
+            {% if user not in game.joined.all %}
+                <tr>
+                    <td><a href="/game/{{ game.id }}">{{ game.game }}</a></td>
+                    <td>{{ game.date |date:"SHORT_DATE_FORMAT" }}</td>
+                    <td>{{ game.time }}</td>
+                    <td><a href="/games/{{ game.id }}/joined">Join</a>
+                </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

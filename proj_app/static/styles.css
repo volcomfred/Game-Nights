@@ -1,0 +1,54 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.wrapper {
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    padding: 10px;
+}
+
+body {
+    background-color: rgb(88, 192, 161);
+}
+
+.form-control {
+    width: 60%;
+}
+
+label {
+    width: 30%;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-group>* {
+    display: inline-block;
+}
+
+.col-6 {
+    margin: 20px;
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.green {
+    color: green;
+}
+
+li.error {
+    color: red;
+    font-weight: bold;
+}
