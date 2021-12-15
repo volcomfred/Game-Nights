@@ -92,12 +92,12 @@ def delete(request, game_id):
     
     return redirect('/games')
 
-def join(request):
-    user = User.objects.get(id=request.session['user_id'])
-    # user = User.objects.get(id=request.session['user_id'])
-    # user.joined_game.add(game)
+# def join(request):
+#     user = User.objects.get(id=request.session['user_id'])
+#     # user = User.objects.get(id=request.session['user_id'])
+#     # user.joined_game.add(game)
 
-    return redirect('/games')
+#     return redirect('/games')
 
 def joined(request, game_id):
     user = User.objects.get(id=request.session['user_id'])

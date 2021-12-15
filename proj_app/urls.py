@@ -10,7 +10,7 @@ urlpatterns = [
     path('addgame/new', views.addgame),
     path('game/<int:game_id>', views.game),
     path('addgame/create', views.create),
-    path('games/join', views.join),
+    # path('games/join', views.join),
     path('games/<int:game_id>/delete', views.delete),
     path('games/<int:game_id>/cancel', views.cancel),
     path('games/<int:game_id>/joined', views.joined),
