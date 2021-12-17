@@ -79,9 +79,14 @@ def create(request):
     return redirect('/games')
 
 def game(request, game_id):
+    this_user = User.objects.filter(id=request.session['user_id'])
     one_game = Game.objects.get(id=game_id)
+    all_users = one_game.joined.all()
     context = {
+        'user': this_user[0],
+        'all_users': all_users,
         'game': one_game,
+        'all_games' : Game.objects.all(),
         'user_games' : User.objects.get(id=request.session['user_id']).joined_game.all(),
     }
     return render(request, 'game.html', context)
