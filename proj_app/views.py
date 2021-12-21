@@ -78,6 +78,24 @@ def create(request):
     user.joined_game.add(game)
     return redirect('/games')
 
+def edit(request, user_id):
+    this_user = User.objects.filter(id=request.session['user_id'])
+    context = {
+        'user': this_user[0],
+        'first_name': User.objects.get(id=user_id).first_name,
+        'last_name': User.objects.get(id=user_id).last_name,
+        'email': User.objects.get(id=user_id).email,
+    }
+
+    return render(request, "edit.html", context)
+
+def update(request, user_id):
+    user = User.objects.get(id=user_id)
+    user.first_name = request.POST['first_name']
+    first_name.save()
+
+    return redirect('/games')
+
 def game(request, game_id):
     this_user = User.objects.filter(id=request.session['user_id'])
     one_game = Game.objects.get(id=game_id)
@@ -96,13 +114,6 @@ def delete(request, game_id):
     to_delete.delete()
     
     return redirect('/games')
-
-# def join(request):
-#     user = User.objects.get(id=request.session['user_id'])
-#     # user = User.objects.get(id=request.session['user_id'])
-#     # user.joined_game.add(game)
-
-#     return redirect('/games')
 
 def joined(request, game_id):
     user = User.objects.get(id=request.session['user_id'])

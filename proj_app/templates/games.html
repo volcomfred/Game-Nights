@@ -13,7 +13,8 @@
     <div class="wrapper">
         <h1>Welcome {{user.first_name}}!</h1> 
         <h2>Your Game Night Schedule</h2>
-        <a href="/addgame/new">Add a Game Night!</a>
+        <a class="text-leftt text-light btn btn-primary" href="/addgame/new">Add a Game Night!</a>
+        <a class="text-leftt text-light btn btn-primary" href="/edit/{{user.id}}">Edit My Account</a>
         <a class="text-leftt text-light btn btn-primary"  href="/logout">Logout</a>
         <table class="table p-5 col-10 mx-auto my-10 table-dark text-light table-bordered">
             <thead>

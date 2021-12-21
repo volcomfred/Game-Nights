@@ -18,10 +18,10 @@
     <h6>Game Night Date {{ game.date |date:"SHORT_DATE_FORMAT" }}</h6>
     <h6>Time: {{ game.time }}</h6>
 
-    <h4>Other Users Joining the Game Night:</h4>
-    {% for users in all_users %}
+    <h4>Users Joining the Game Night:</h4>
+    {% for user in all_users %}
     
-    <p>{{ user.first_name }}</p>
+    <p>{{ user.first_name }} {{ user.last_name }}</p>
     
     {% endfor %}
 
