@@ -92,7 +92,9 @@ def edit(request, user_id):
 def update(request, user_id):
     user = User.objects.get(id=user_id)
     user.first_name = request.POST['first_name']
-    first_name.save()
+    user.last_name = request.POST['last_name']
+    user.email = request.POST['email']
+    user.save()
 
     return redirect('/games')
 

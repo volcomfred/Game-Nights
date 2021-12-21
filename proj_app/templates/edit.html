@@ -11,13 +11,13 @@
 </head>
 
 <body>
-    <h1>Welcome {{user.first_name}}!</h1> 
-    <h2>Edit your profile</h2>
+    <h1>Edit your account {{user.first_name}}!</h1> 
+    <h2>Make any changes you need</h2>
     <a class="text-leftt text-light btn btn-primary" href="/games">Go Back</a>
     <a class="text-leftt text-light btn btn-primary"  href="/logout">Logout</a>
     <div class="row">
         <div class="col-6 px-3">
-            <form action="/edit" method="post">
+            <form action="/update/{{user.id}}" method="post">
                 {% csrf_token %}
                 {% for message in messages %}
                     <p class="text-danger small">{{ message }}</p>
